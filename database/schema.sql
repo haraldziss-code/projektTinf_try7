@@ -122,6 +122,21 @@ CREATE TABLE small_equipment_log (
     INDEX idx_user (changed_by)
 );
 
+-- Aktivitäts-Log für Protokollierung
+CREATE TABLE activity_logs (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT,
+    action VARCHAR(100) NOT NULL,
+    details TEXT,
+    ip_address VARCHAR(45),
+    user_agent TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL,
+    INDEX idx_user (user_id),
+    INDEX idx_action (action),
+    INDEX idx_created (created_at)
+);
+
 -- Sessions für Authentifizierung
 CREATE TABLE user_sessions (
     id VARCHAR(128) PRIMARY KEY,
