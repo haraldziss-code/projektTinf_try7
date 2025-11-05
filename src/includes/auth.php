@@ -4,7 +4,9 @@
  * Funktionen für Login, Logout und Berechtigungsprüfung
  */
 
-define('SECURE_ACCESS', true);
+if (!defined('SECURE_ACCESS')) {
+    define('SECURE_ACCESS', true);
+}
 require_once 'config.php';
 
 /**
