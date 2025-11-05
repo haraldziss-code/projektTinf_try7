@@ -217,4 +217,56 @@ INSERT INTO users (username, password_hash, full_name, email, role) VALUES
 ('lehrer1', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Max Mustermann', 'm.mustermann@bkt.de', 'Lehrer'),
 ('hausmeister', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Hans Hausmeister', 'h.hausmeister@bkt.de', 'Hausmeister');
 
+-- Beispieldaten für Großgeräte
+INSERT INTO large_equipment (inventory_number, equipment_name, equipment_type, hall_garage, location_description, last_inspection, next_inspection_due, status, notes, created_by) VALUES
+('MK-2023-001', 'Turnkasten 5-teilig', 'Turnkasten', 'Halle 1', 'Links neben der Eingangstür', '2024-01-15', '2025-01-15', 'aktiv', 'Guter Zustand, alle Teile vorhanden', 1),
+('MK-2023-002', 'Turnkasten 3-teilig', 'Turnkasten', 'Halle 1', 'Rechts neben der Wand', '2024-02-20', '2025-02-20', 'aktiv', 'Kleinere Kratzer an der Oberfläche', 1),
+('MK-2023-003', 'Turnbank', 'Turnbank', 'Halle 1', 'Mitte der Halle', '2023-12-10', '2024-12-10', 'aktiv', 'Neue Polsterung im letzten Jahr', 1),
+('MK-2023-004', 'Barren (männlich)', 'Barren', 'Halle 2', 'Ganz hinten rechts', '2024-03-01', '2025-03-01', 'in Reparatur', 'Griff beschädigt, muss repariert werden', 1),
+('MK-2023-005', 'Barren (weiblich)', 'Barren', 'Halle 2', 'Neben dem männlichen Barren', '2024-01-08', '2025-01-08', 'aktiv', 'Kürzlich neu lackiert', 1),
+('MK-2023-006', 'Tischtennisplatte 1', 'Tischtennistisch', 'Halle 1', 'Neben dem Eingang', '2024-01-20', '2025-01-20', 'aktiv', 'Netz intakt, Oberfläche in gutem Zustand', 1),
+('MK-2023-007', 'Tischtennisplatte 2', 'Tischtennistisch', 'Halle 1', 'Gegenüber von Platte 1', '2023-11-15', '2024-11-15', 'aktiv', 'Leichte Kratzer auf der Oberfläche', 1),
+('MK-2023-008', 'Sprungbrett', 'Sprungbrett', 'Halle 2', 'Beim Sprunggraben', '2024-02-10', '2025-02-10', 'aktiv', 'Federung funktioniert einwandfrei', 1);
+
+-- Beispieldaten für Inspektionen
+INSERT INTO inspections (equipment_id, inspection_date, inspector_name, result, notes, next_inspection, inspected_by) VALUES
+(1, '2024-01-15', 'Max Mustermann', 'bestanden', 'Alle Teile intakt, keine Mängel festgestellt', '2025-01-15', 2),
+(2, '2024-02-20', 'Max Mustermann', 'bestanden', 'Kleine Kratzer, aber sicher in der Nutzung', '2025-02-20', 2),
+(3, '2023-12-10', 'Max Mustermann', 'bestanden', 'Neue Polsterung, sehr guter Zustand', '2024-12-10', 2),
+(4, '2024-03-01', 'Hans Hausmeister', 'nicht bestanden', 'Griff ist locker und muss dringend repariert werden', '2024-03-15', 3),
+(5, '2024-01-08', 'Max Mustermann', 'bestanden', 'Neue Lackierung, alle Teile fest', '2025-01-08', 2),
+(6, '2024-01-20', 'Hans Hausmeister', 'bestanden', 'Netz intakt, Tisch gerade', '2025-01-20', 3),
+(7, '2023-11-15', 'Max Mustermann', 'mit Auflagen', 'Kratzer sollten mit Lack behandelt werden', '2024-11-15', 2),
+(8, '2024-02-10', 'Hans Hausmeister', 'bestanden', 'Federung perfekt, kein Mangel', '2025-02-10', 3);
+
+-- Beispieldaten für Kleingeräte
+INSERT INTO small_equipment (equipment_type, category_id, quantity, storage_location_id, characteristics, min_quantity, notes, created_by) VALUES
+('Basketball (Größe 7)', 1, 15, 1, 'Orange, Leder', 10, 'Alle in gutem Zustand', 2),
+('Basketball (Größe 5)', 1, 12, 2, 'Orange, Kunststoff', 8, 'Für jüngere Schüler', 2),
+('Volleyball', 2, 20, 1, 'Weiß/Blau, Indoor', 15, 'Alle geprüft und bereit', 2),
+('Fußball (Größe 5)', 3, 25, 3, 'Schwarz/Weiß', 15, 'Einige zeigen leichte Abnutzung', 2),
+('Handball', 4, 18, 4, 'Gelb/Schwarz', 12, 'Guter Grip', 2),
+('Softball', 5, 30, 5, 'Weich, verschiedene Farben', 20, 'Für verschiedene Altersgruppen', 2),
+('Gymnastikball (65cm)', 6, 8, 6, 'Blau, Anti-Burst', 5, 'Alle halten Luft', 2),
+('Tischtennisschläger', 7, 12, 7, 'Verschiedene Marken', 8, 'Griffe in gutem Zustand', 2),
+('Tischtennisbälle', 7, 50, 7, 'Weiß, 3 Sterne', 30, 'Einige haben Dellen', 2),
+('Unihockeyschläger', 8, 20, 8, 'Blau/Schwarz', 12, 'Linkshänder-Schläger vorhanden', 2),
+('Unihockeybälle', 8, 25, 8, 'Orange, Lochbälle', 15, 'Alle gleichmäßig', 2),
+('Badmintonschläger', 9, 16, 9, 'Verschiedene Gewichte', 10, 'Besaitung geprüft', 2),
+('Badmintonbälle (Feder)', 9, 30, 9, 'Weiße Federn', 20, 'Einige beschädigt', 2),
+('Springseil', 15, 20, 11, 'Verschiedene Längen', 10, 'Griffe intakt', 2),
+('Markierungsbänder', 16, 30, 12, 'Verschiedene Farben', 20, 'Für Feldmarkierung', 2);
+
+-- Aktivitäts-Log für Demo
+INSERT INTO activity_logs (user_id, action, details, ip_address, user_agent, created_at) VALUES
+(1, 'login', 'Benutzer angemeldet: admin', '127.0.0.1', 'Mozilla/5.0 (Demo)', NOW()),
+(2, 'login', 'Benutzer angemeldet: lehrer1', '127.0.0.1', 'Mozilla/5.0 (Demo)', NOW()),
+(3, 'login', 'Benutzer angemeldet: hausmeister', '127.0.0.1', 'Mozilla/5.0 (Demo)', NOW()),
+(2, 'add_large_equipment', 'Großgerät hinzugefügt: MK-2023-001 - Turnkasten 5-teilig', '127.0.0.1', 'Mozilla/5.0 (Demo)', DATE_SUB(NOW(), INTERVAL 1 DAY)),
+(2, 'add_large_equipment', 'Großgerät hinzugefügt: MK-2023-002 - Turnkasten 3-teilig', '127.0.0.1', 'Mozilla/5.0 (Demo)', DATE_SUB(NOW(), INTERVAL 1 DAY)),
+(3, 'edit_large_equipment', 'Großgerät bearbeitet: MK-2023-004 - Barren (männlich)', '127.0.0.1', 'Mozilla/5.0 (Demo)', DATE_SUB(NOW(), INTERVAL 2 DAY)),
+(2, 'add_inspection', 'Inspektion durchgeführt für Gerät MK-2023-001', '127.0.0.1', 'Mozilla/5.0 (Demo)', DATE_SUB(NOW(), INTERVAL 1 DAY)),
+(3, 'add_inspection', 'Inspektion durchgeführt für Gerät MK-2023-004', '127.0.0.1', 'Mozilla/5.0 (Demo)', DATE_SUB(NOW(), INTERVAL 1 DAY)),
+(2, 'add_small_equipment', 'Kleingerät hinzugefügt: Basketball (Größe 7)', '127.0.0.1', 'Mozilla/5.0 (Demo)', DATE_SUB(NOW(), INTERVAL 3 DAY));
+
 COMMIT;
