@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  webserver:
+    image: php:8.1-apache
+    container_name: sportgeraete_webserver
+    ports:
+      - "8080:80"
+    volumes:
+      - ./src:/var/www/html
+      - ./apache.conf:/etc/apache2/sites-available/000-default.conf
+    depends_on:
+      - database
+    environment:
+      - APACHE_DOCUMENT_ROOT=/var/www/html
+
+  database:
+    image: mysql:8.0
+    container_name: sportgeraete_database
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: secure_root_password_123
+      MYSQL_DATABASE: sportgeraete
+      MYSQL_USER: sportgeraete_user
+      MYSQL_PASSWORD: sportgeraete_password_456
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./database/schema.sql:/docker-entrypoint-initdb.d/schema.sql
+    command: --default-authentication-plugin=mysql_native_password
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: sportgeraete_phpmyadmin
+    ports:
+      - "8081:80"
+    environment:
+      PMA_HOST: database
+      PMA_USER: root
+      PMA_PASSWORD: secure_root_password_123
+    depends_on:
+      - database
+
+volumes:
+  db_data:
+    driver: local
